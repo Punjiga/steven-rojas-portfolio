@@ -289,12 +289,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const elementosTraducibles = document.querySelectorAll('[data-lang]');
     cargarTextosDelIdioma(idiomaActual);
     if (interruptorIdioma) {
-        interruptorIdioma.addEventListener('change', () => {
-            const nuevoIdioma = interruptorIdioma.checked ? 'en' : 'es';
-            if (nuevoIdioma !== idiomaActual) {
-                cambiarIdioma(nuevoIdioma);
-            }
-        });
+            interruptorIdioma.addEventListener('change', () => {
+                let nuevoIdioma;
+                if (interruptorIdioma.checked) {
+                    nuevoIdioma = 'en';
+                } else {
+                    nuevoIdioma = 'es';
+                }
+                if (nuevoIdioma !== idiomaActual) {
+                    cambiarIdioma(nuevoIdioma);
+                }
+            });
     }
     function cambiarIdioma(nuevoIdioma) {
         document.body.classList.add('cambiando-idioma');
@@ -351,4 +356,5 @@ document.addEventListener('DOMContentLoaded', function () {
                 iniciarAnimacionCambiador();
             });
     }
+
 });
