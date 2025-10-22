@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-
-    //------------------- PARA EL MENU DE HAMBURGUESA --------------------------
+    //------------------- MENU HAMBURGUESA --------------------------
     const menuToggle = document.getElementById('menu-toggle');
     const menuList = document.getElementById('menu');
     const closeBtn = document.querySelector('.close-menu');
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('#menu a').forEach(link => {
         link.addEventListener('click', closeMenu);
     });
-    //------------------- FONDO ANIMADO TODA LA PAGINA --------------------------
+    //------------------- FONDO ANIMADO --------------------------
     if (window.tsParticles) {
         tsParticles.load("tsparticles", {
             fullScreen: { enable: false },
@@ -46,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
             background: { color: { value: "#f2efe9" } }
         });
     }
-    //------------------- LETRAS P HEADER (CON ANIMACIÓN DE OPACIDAD) --------------------------
+    //------------------- ANIMACIÓN HEADER --------------------------
     const palabrasPorIdioma = {
         es: ["Web", "Foto", "Video"],
         en: ["Web", "Photo", "Video"]
@@ -56,21 +55,29 @@ document.addEventListener('DOMContentLoaded', function () {
     let intervaloCambiador = null;
     function iniciarAnimacionCambiador() {
         const cambiador = document.getElementById(cambiadorId);
-        if (!cambiador) {
-            return;
-        }
+        if (!cambiador) return;
+
         cambiador.style.transition = "opacity 0.5s ease-in-out";
         cambiador.style.opacity = "1";
-        const palabras = palabrasPorIdioma[idiomaActual] || palabrasPorIdioma.es;
+
+        let palabras;
+        if (idiomaActual === 'es') {
+            palabras = palabrasPorIdioma.es;
+        } else {
+            palabras = palabrasPorIdioma.en;
+        }
+
         if (intervaloCambiador) {
             clearInterval(intervaloCambiador);
             intervaloCambiador = null;
         }
-        let indexCambiador = palabras.indexOf(cambiador.textContent?.trim());
+
+        let indexCambiador = palabras.indexOf(cambiador.textContent.trim());
         if (indexCambiador < 0) {
             indexCambiador = 0;
         }
         cambiador.textContent = palabras[indexCambiador];
+
         intervaloCambiador = setInterval(() => {
             const el = document.getElementById(cambiadorId);
             if (!el) {
@@ -86,12 +93,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 500);
         }, 2500);
     }
-    //------------------- FLECHA QUE LLEVA HACIA ARRIBA --------------------------
+    //------------------- FLECHA ARRIBA --------------------------
     const goUp = document.getElementById('goUp');
     window.addEventListener('scroll', () => {
-        if (!goUp) {
-            return;
-        }
+        if (!goUp) return;
         if (window.scrollY > 50) {
             goUp.classList.add('show');
         } else {
@@ -103,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
-    //------------------- CODIGO BARRA DESPLAZABLE PROYECTOS --------------------------
+    //------------------- BARRA PROYECTOS --------------------------
     const radios = document.querySelectorAll('.radio-container input[name="project"]');
     const glider = document.querySelector('.radio-container .glider');
     radios.forEach((radio, index) => {
@@ -113,57 +118,39 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-    //------------------- CODIGO PROYECTOS CAMBIAR IMG Y RUTA PROYECTOS -------------------------
+    //------------------- CAMBIO DE PROYECTOS -------------------------
     const titulo = document.getElementById("projectTitle");
     const circle = document.querySelector(".circleProject");
     const btn = document.getElementById("visitBtn");
     document.querySelectorAll("input[name='project']").forEach(input => {
         input.addEventListener("change", () => {
             if (input.id === "proj1") {
-                if (titulo) {
-                    titulo.textContent = "Congreso de Café";
-                }
+                if (titulo) titulo.textContent = "Congreso de Café";
                 if (circle) {
-                    circle.style.backgroundImage = "url(../assets/imgs/project-1.png)";
-                    circle.href = "https://congreso-de-cafe.vercel.app/  ";
+                    circle.style.backgroundImage = "url('./assets/imgs/project-1.png')";
+                    circle.href = "https://congreso-de-cafe.vercel.app/";
                 }
-                if (btn) {
-                    btn.href = "https://congreso-de-cafe.vercel.app/  ";
-                }
+                if (btn) btn.href = "https://congreso-de-cafe.vercel.app/";
             } else if (input.id === "proj2") {
-                if (titulo) {
-                    titulo.textContent = "Fit Force";
-                }
+                if (titulo) titulo.textContent = "Fit Force";
                 if (circle) {
-                    circle.style.backgroundImage = "url(../assets/imgs/project-2.png)";
-                    circle.href = "https://fit-force-final.vercel.app/  ";
+                    circle.style.backgroundImage = "url('./assets/imgs/project-2.png')";
+                    circle.href = "https://fit-force-final.vercel.app/";
                 }
-                if (btn) {
-                    btn.href = "https://fit-force-final.vercel.app/  ";
-                }
+                if (btn) btn.href = "https://fit-force-final.vercel.app/";
             } else if (input.id === "proj3") {
-                if (titulo) {
-                    titulo.textContent = "Bonfire Lit";
-                }
+                if (titulo) titulo.textContent = "Bonfire Lit";
                 if (circle) {
-                    circle.style.backgroundImage = "url(../assets/imgs/project-3.png)";
-                    circle.href = "https://bonfire-lit.vercel.app/  ";
+                    circle.style.backgroundImage = "url('./assets/imgs/project-3.png')";
+                    circle.href = "https://bonfire-lit.vercel.app/";
                 }
-                if (btn) {
-                    btn.href = "https://bonfire-lit.vercel.app/  ";
-                }
+                if (btn) btn.href = "https://bonfire-lit.vercel.app/";
             }
         });
     });
-    if (titulo) {
-        titulo.textContent = "Congreso de Café";
-    }
-    if (circle) {
-        circle.style.backgroundImage = "url('./assets/imgs/project-1.png')";
-    }
-    if (btn) {
-        btn.href = "https://congreso-de-cafe.vercel.app/  ";
-    }
+    if (titulo) titulo.textContent = "Congreso de Café";
+    if (circle) circle.style.backgroundImage = "url('./assets/imgs/project-1.png')";
+    if (btn) btn.href = "https://congreso-de-cafe.vercel.app/";
     //------------------- FORMULARIO -------------------------
     if (window.emailjs) {
         emailjs.init("_SC3QrHOmpfnC4f8J");
@@ -173,28 +160,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const email = document.getElementById("correo");
     const mensaje = document.getElementById("mensaje");
     const enviarBtn = form ? form.querySelector("button[type='submit']") : null;
-    const validarEmail = (email) => {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email || "");
-    };
-    const validarForm = () => {
-        if (!nombre || !email || !mensaje) {
-            return false;
-        }
-        if (nombre.value.trim().length < 2) {
-            return false;
-        }
-        if (!validarEmail(email.value.trim())) {
-            return false;
-        }
-        if (mensaje.value.trim().length < 10) {
-            return false;
-        }
+    function validarEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+    function validarForm() {
+        if (!nombre || !email || !mensaje) return false;
+        if (nombre.value.trim().length < 2) return false;
+        if (!validarEmail(email.value.trim())) return false;
+        if (mensaje.value.trim().length < 10) return false;
         return true;
-    };
+    }
     function actualizarBtn() {
-        if (!enviarBtn) {
-            return;
-        }
+        if (!enviarBtn) return;
         if (validarForm()) {
             enviarBtn.disabled = false;
             enviarBtn.style.opacity = "1";
@@ -248,12 +226,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
         });
     }
-    //------------------- VIDEO -------------------------
+    //------------------- VIDEO (FACADE + IDIOMA) -------------------------
     function loadVideo(container) {
+        const videoId = container.getAttribute('data-video-id');
+        if (!videoId) return;
         container.innerHTML = `
-            <iframe src="https://www.youtube.com/embed/jOeX9W99U9s?autoplay=1"
+            <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1"
                 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen
-                style="width:100%; height:500px; border-radius:20px 0 0 20px;">
+                style="width:100%; height:100%; border-radius:20px 0 0 20px;">
             </iframe>`;
     }
     window.loadVideo = loadVideo;
@@ -284,22 +264,22 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 900);
         }
     }
-    //-------------------  PARA EL CAMBIO DE IDIOMA Y SIMILARES -------------------------
+    //------------------- CAMBIO DE IDIOMA -------------------------
     const interruptorIdioma = document.getElementById('toggle');
     const elementosTraducibles = document.querySelectorAll('[data-lang]');
     cargarTextosDelIdioma(idiomaActual);
     if (interruptorIdioma) {
-            interruptorIdioma.addEventListener('change', () => {
-                let nuevoIdioma;
-                if (interruptorIdioma.checked) {
-                    nuevoIdioma = 'en';
-                } else {
-                    nuevoIdioma = 'es';
-                }
-                if (nuevoIdioma !== idiomaActual) {
-                    cambiarIdioma(nuevoIdioma);
-                }
-            });
+        interruptorIdioma.addEventListener('change', () => {
+            let nuevoIdioma;
+            if (interruptorIdioma.checked) {
+                nuevoIdioma = 'en';
+            } else {
+                nuevoIdioma = 'es';
+            }
+            if (nuevoIdioma !== idiomaActual) {
+                cambiarIdioma(nuevoIdioma);
+            }
+        });
     }
     function cambiarIdioma(nuevoIdioma) {
         document.body.classList.add('cambiando-idioma');
@@ -331,12 +311,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     { id: 'correo', key: 'form_email_placeholder' },
                     { id: 'mensaje', key: 'form_message_placeholder' }
                 ];
-                camposFormulario.forEach(item => {
+                for (let i = 0; i < camposFormulario.length; i++) {
+                    const item = camposFormulario[i];
                     const input = document.getElementById(item.id);
                     if (input && textos[item.key]) {
                         input.placeholder = textos[item.key];
                     }
-                });
+                }
                 const cvLink = document.getElementById('cvDownloadLink');
                 if (cvLink) {
                     if (codigoIdioma === 'es') {
@@ -349,6 +330,51 @@ document.addEventListener('DOMContentLoaded', function () {
                         cvLink.setAttribute('aria-label', 'Download CV in English');
                     }
                 }
+                // --- ACTUALIZACIÓN DEL VIDEO SEGÚN IDIOMA ---
+                const facade = document.getElementById('video-facade');
+                if (facade) {
+                    // Si ya hay un iframe (video cargado), restablecer la fachada
+                    const iframe = facade.querySelector('iframe');
+                    let videoId;
+                    let thumbUrl;
+                    let ariaLabel;
+                    if (codigoIdioma === 'es') {
+                        videoId = 'jOeX9W99U9s';
+                        thumbUrl = 'https://img.youtube.com/vi/jOeX9W99U9s/maxresdefault.jpg';
+                        ariaLabel = 'Reproducir video';
+                    } else {
+                        videoId = 'uHyZ-Y3V898';
+                        thumbUrl = 'https://img.youtube.com/vi/uHyZ-Y3V898/maxresdefault.jpg';
+                        ariaLabel = 'Play video';
+                    }
+                    if (iframe) {
+                        // Reconstruir la fachada desde cero
+                        facade.innerHTML = `
+                            <img src="${thumbUrl}" alt="Video de Steven Rojas" loading="lazy">
+                            <button class="btnPlay flex animation" aria-label="${ariaLabel}">
+                                <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        `;
+                        facade.setAttribute('data-video-id', videoId);
+                        facade.setAttribute('tabindex', '0');
+                        facade.addEventListener('click', function() {
+                            loadVideo(facade);
+                        });
+                    } else {
+                        // Solo actualizar imagen y atributo
+                        const img = facade.querySelector('img');
+                        if (img) {
+                            img.src = thumbUrl;
+                        }
+                        facade.setAttribute('data-video-id', videoId);
+                        const btn = facade.querySelector('.btnPlay');
+                        if (btn) {
+                            btn.setAttribute('aria-label', ariaLabel);
+                        }
+                    }
+                }
                 iniciarAnimacionCambiador();
             })
             .catch(err => {
@@ -356,5 +382,4 @@ document.addEventListener('DOMContentLoaded', function () {
                 iniciarAnimacionCambiador();
             });
     }
-
 });
