@@ -237,31 +237,40 @@ document.addEventListener('DOMContentLoaded', function () {
             </iframe>`;
     }
     window.loadVideo = loadVideo;
-    //------------------- HABILIDADES -------------------------
-    const carousel = document.querySelector('.skills-carousel');
-    const totalSkills = 12;
-    if (carousel) {
+    // ------------------- HABILIDADES -------------------------
+    function renderSkills(textos) {
+        const carousel = document.querySelector('.skills-carousel');
+        const totalSkills = 12;
+        if (!carousel) return;
+        // Limpiar carrusel antes de volver a llenarlo
+        carousel.innerHTML = '';
         for (let contador = 1; contador <= totalSkills; contador++) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'skill-item-wrapper';
             const item = document.createElement('div');
             item.className = 'skill-item';
             item.innerHTML = `<img src="./assets/imgs/habilidad-${contador}.png" alt="Habilidad ${contador}">`;
-            carousel.append(item);
+            const levelDiv = document.createElement('div');
+            levelDiv.className = 'skill-level';
+            levelDiv.textContent = textos[`skill_${contador}`] || '—';
+            wrapper.appendChild(item);
+            wrapper.appendChild(levelDiv);
+            carousel.appendChild(wrapper);
         }
+        // Reiniciar animación de "lift"
         const items = carousel.querySelectorAll('.skill-item');
         if (items.length) {
             let current = 0;
             let dir = 1;
             items[current].classList.add('lift');
-            setInterval(() => {
+            if (window.skillInterval) clearInterval(window.skillInterval);
+            window.skillInterval = setInterval(() => {
                 items[current].classList.remove('lift');
-                if (current === items.length - 1) {
-                    dir = -1;
-                } else if (current === 0) {
-                    dir = 1;
-                }
+                if (current === items.length - 1) dir = -1;
+                else if (current === 0) dir = 1;
                 current += dir;
                 items[current].classList.add('lift');
-            }, 900);
+            }, 1500);
         }
     }
     //------------------- CAMBIO DE IDIOMA -------------------------
@@ -270,12 +279,7 @@ document.addEventListener('DOMContentLoaded', function () {
     cargarTextosDelIdioma(idiomaActual);
     if (interruptorIdioma) {
         interruptorIdioma.addEventListener('change', () => {
-            let nuevoIdioma;
-            if (interruptorIdioma.checked) {
-                nuevoIdioma = 'en';
-            } else {
-                nuevoIdioma = 'es';
-            }
+            let nuevoIdioma = interruptorIdioma.checked ? 'en' : 'es';
             if (nuevoIdioma !== idiomaActual) {
                 cambiarIdioma(nuevoIdioma);
             }
@@ -300,12 +304,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 return res.json();
             })
             .then(textos => {
+                // Traducir elementos con data-lang
                 elementosTraducibles.forEach(el => {
                     const clave = el.getAttribute('data-lang');
                     if (textos[clave]) {
                         el.innerHTML = textos[clave];
                     }
                 });
+                // Traducir placeholders del formulario
                 const camposFormulario = [
                     { id: 'nombre', key: 'form_name_placeholder' },
                     { id: 'correo', key: 'form_email_placeholder' },
@@ -318,6 +324,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         input.placeholder = textos[item.key];
                     }
                 }
+                // Actualizar enlace del CV
                 const cvLink = document.getElementById('cvDownloadLink');
                 if (cvLink) {
                     if (codigoIdioma === 'es') {
@@ -330,14 +337,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         cvLink.setAttribute('aria-label', 'Download CV in English');
                     }
                 }
-                // --- ACTUALIZACIÓN DEL VIDEO SEGÚN IDIOMA ---
+                // Actualizar video según idioma
                 const facade = document.getElementById('video-facade');
                 if (facade) {
-                    // Si ya hay un iframe (video cargado), restablecer la fachada
                     const iframe = facade.querySelector('iframe');
-                    let videoId;
-                    let thumbUrl;
-                    let ariaLabel;
+                    let videoId, thumbUrl, ariaLabel;
                     if (codigoIdioma === 'es') {
                         videoId = 'jOeX9W99U9s';
                         thumbUrl = 'https://img.youtube.com/vi/jOeX9W99U9s/maxresdefault.jpg';
@@ -348,7 +352,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         ariaLabel = 'Play video';
                     }
                     if (iframe) {
-                        // Reconstruir la fachada desde cero
                         facade.innerHTML = `
                             <img src="${thumbUrl}" alt="Video de Steven Rojas" loading="lazy">
                             <button class="btnPlay flex animation" aria-label="${ariaLabel}">
@@ -359,26 +362,24 @@ document.addEventListener('DOMContentLoaded', function () {
                         `;
                         facade.setAttribute('data-video-id', videoId);
                         facade.setAttribute('tabindex', '0');
-                        facade.addEventListener('click', function() {
+                        facade.addEventListener('click', function () {
                             loadVideo(facade);
                         });
                     } else {
-                        // Solo actualizar imagen y atributo
                         const img = facade.querySelector('img');
-                        if (img) {
-                            img.src = thumbUrl;
-                        }
+                        if (img) img.src = thumbUrl;
                         facade.setAttribute('data-video-id', videoId);
                         const btn = facade.querySelector('.btnPlay');
-                        if (btn) {
-                            btn.setAttribute('aria-label', ariaLabel);
-                        }
+                        if (btn) btn.setAttribute('aria-label', ariaLabel);
                     }
                 }
+                renderSkills(textos);
+                // Reiniciar animación del header
                 iniciarAnimacionCambiador();
             })
             .catch(err => {
-                console.log('Error al cargar idioma:', err);
+                console.error('Error al cargar idioma:', err);
+                // Opcional: usar fallback o mantener contenido actual
                 iniciarAnimacionCambiador();
             });
     }
