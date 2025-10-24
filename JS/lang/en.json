@@ -28,5 +28,17 @@
     "form_message_placeholder": "Your message",
     "btn_send": "Send",
     "footer_quote": "\"Creating with purpose.\"",
-    "footer_copyright": "© 2025 Steven Rojas – All rights reserved"
+    "footer_copyright": "© 2025 Steven Rojas – All rights reserved",
+    "skill_1": "Advanced",
+    "skill_2": "Advanced",
+    "skill_3": "Advanced",
+    "skill_4": "Advanced",
+    "skill_5": "Beginner",
+    "skill_6": "Advanced",
+    "skill_7": "Intermediate",
+    "skill_8": "Intermediate",
+    "skill_9": "Beginner",
+    "skill_10": "Advanced",
+    "skill_11": "Advanced",
+    "skill_12": "Advanced"
 }
