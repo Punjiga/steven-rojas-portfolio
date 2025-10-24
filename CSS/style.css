@@ -492,6 +492,33 @@ header nav ul li a:hover, footer nav ul li a:hover{
 .skill-item.lift {
     transform: translateY(-20px) scale(1.1);
 }
+/* ESTOOOOOOOOOOOOOOOOO */
+.skill-item-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.skill-level {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    font-family: var(--fuente-ctas-span);
+    font-weight: 600;
+    font-size: 18px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    font-weight: 800;
+}
+.skill-item-wrapper:hover .skill-level, .skill-item.lift + .skill-level {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
 /* +++++++++++++++++++++++++++ COMIENZO SECCIÓN PROJECTS +++++++++++++++++++++++++++*/
 .sectionProjects {
     height: fit-content;
