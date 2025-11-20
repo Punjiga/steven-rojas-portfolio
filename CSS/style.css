@@ -1,0 +1,1336 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+/* fuente para el h1 */
+@font-face {
+    font-family: 'Unbounded', sans-serif;
+    src: url(../assets/fonts/Unbounded-VariableFont_wght.ttf) format('truetype');
+    font-weight: 100 900;
+    font-display: swap; 
+}
+/* fuente para los h2-h5 */
+@font-face {
+    font-family: 'Work Sans', sans-serif;
+    src: url(../assets/fonts/WorkSans-VariableFont_wght.ttf) format('truetype');
+    font-weight: 100 900; 
+    font-display: swap;
+}
+/* fuente para los btns,ctas,span */
+@font-face {
+    font-family: 'IBM Plex Sans', sans-serif;
+    src: url(../assets/fonts/IBMPlexSans-VariableFont_wdth\,wght.ttf) format('truetype');
+    font-weight: 100 900; 
+    font-display: swap;
+}
+/* fuente para los p */
+@font-face {
+    font-family: 'Inter', sans-serif;
+    src: url(../assets/fonts/Inter-VariableFont_opsz\,wght.ttf) format('truetype');
+    font-weight: 100 900; 
+    font-display: swap;
+}
+:root{
+    /* COLORES */
+    --color-fondo: #f2efe9;
+    --color-textos: #254033;
+    --color-ctas: #d96523;
+    --color-secundario-1: #68c46d;
+    --color-secundario-2: #5c4033;
+    --color-secundario-3: #f2efe9;
+    /* Fuentes */
+    --fuente-h1: 'Unbounded', sans-serif;
+    --fuente-h2-h5: 'Work Sans', sans-serif;
+    --fuente-ctas-span: 'IBM Plex Sans', sans-serif;
+    --fuente-p: 'Inter', sans-serif;
+}
+/* estilos generales */
+/* PARA EL FONDO DE TODA LA PAGINA */
+#tsparticles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+ul{
+    list-style: none;
+}
+h1,h2,h3,h4,h5,a,button,span,p, input, label{
+    text-decoration: none;
+    color: var(--color-textos);
+}
+span{
+    color: var(--color-ctas);
+}
+h1 {
+    font-family: var(--fuente-h1);
+    font-weight: 700; /* bold */
+    font-size: 40px;
+}
+h2{
+    letter-spacing: 5px;
+    font-size: 45px;
+}
+h2, h3, h4, h5 {
+    font-family: var(--fuente-h2-h5);
+    font-weight: 500; /* medium */
+}
+a, button, span, label, input {
+    font-family: var(--fuente-ctas-span);
+    font-weight: 600; /* semi-bold */
+}
+input, textarea{
+    caret-color: var(--color-ctas);
+}
+p{
+    font-family: var(--fuente-p);
+    font-weight: 600; /* semi-bold */
+    font-size: 28px;
+}
+.btn{
+    font-size: 25px;
+    padding: .9rem 3rem;
+    background-color: var(--color-ctas);
+    border: none;
+    color: var(--color-secundario-3);
+}
+.btn span{
+    color: var(--color-secundario-3) !important;
+}
+button, #visitBtn {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.6em;
+    cursor: pointer;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+#visitBtn:disabled {
+    background-color: gray; /* o un color más apagado */
+    cursor: not-allowed;
+}
+#visitBtn:not(:disabled) {
+    background-color: var(--color-ctas);
+    cursor: pointer;
+}
+.label {
+    position: relative;
+    top: -1px;
+}
+#mensaje{
+    height: 90px;
+}
+.transition {
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    transition-duration: 800ms;
+    background-color: var(--color-secundario-1);
+    border-radius: 9999px;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.btn:hover .transition {
+    width: 14em;
+    height: 14em;
+}
+/* para hacerlos flex */
+.flex{
+    display: flex;
+}
+/* para animarlos */
+.animation{
+    transition: all 0.4s ease;
+}
+section, footer{
+    text-align: center;
+    padding: 119px 50px !important;
+}
+/* Flecha fija en esquina inferior derecha */
+.arrowUpDown {
+    position: fixed;
+    bottom: 50px;
+    right: 30px;   /* ← ahora igual que la burbuja */
+    cursor: pointer;
+    z-index: 100;
+    border-radius: 50%;
+    padding: .3rem;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+    background-color: var(--color-ctas);
+}
+/* Icono SVG */
+.arrowIcon {
+    width: 50px;
+    height: 50px;
+}
+/* Hover elegante (ya existente, se mantiene) */
+.arrowUpDown:hover, #bot-container:hover {
+    background-color: var(--color-secundario-1) !important;
+    transition: all ease-in-out 0.3s;
+}
+.arrowUpDown:hover .arrowIcon {
+    transform: translateY(-3px);
+}
+/* Estado inicial oculto */
+.fadeUp {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+/* Estado visible */
+.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.skip-link {
+    position: absolute;
+    top: -1000px;
+    left: -1000px;
+    background: transparent;
+    color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 0;
+    z-index: -1;
+}
+
+.skip-link:focus {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #f2efe9;
+    color: #212121;
+    padding: 8px 12px;
+    font-size: 16px;
+    z-index: 9999;
+    border-radius: 4px;
+    box-shadow: 0 0 0 2px var(--color-ctas);
+}
+/* +++++++++++++++++++++++++++ COMIENZO HEADER +++++++++++++++++++++++++++++++*/
+header{
+    width: 100%;
+    align-items: start;
+    flex-direction: column;
+    padding: 0px 50px;
+    position: relative;
+}
+header nav{
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo, .logo img{
+    width: 140px;
+    height: 140px;
+}
+.logo img:hover{
+    transform: rotate(-5deg);
+}
+header nav ul, footer nav ul{
+    align-items: center;
+    gap: 76px;
+}
+header nav ul li a, footer nav ul li a{
+    font-size: 30px;
+    color: #21212180;
+}
+header nav ul li a:hover, footer nav ul li a:hover{
+    opacity: 100%;
+    border-bottom: 7px solid var(--color-secundario-1);
+}
+.close-menu{
+    display: none;
+}
+.logo2{
+    display: none;
+}
+/* PARA EL IDIOMA */
+.containerActions{
+    width: fit-content;
+    gap: 30px;
+}
+.idiomaSwitch{
+    gap: 15px;
+    align-items: center;
+    font-size: 20px;
+}
+.idiomaSwitch span{
+    color: var(--color-textos);
+}
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+.toggle-input {
+    display: none;
+}
+.toggle-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 34px;
+    border-radius: 17px;
+    background-color: var(--color-ctas);
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+}
+.toggle-label:before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: var(--color-secundario-3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease;
+}
+.toggle-input:checked + .toggle-label {
+    background-color: var(--color-secundario-1);
+}
+.toggle-input:checked + .toggle-label:before {
+    transform: translateX(26px);
+}
+.bar{
+    position: relative;
+    width: 50px;
+    height: 40px;
+    cursor: pointer;
+    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.25));
+    display: none;
+}
+.bar span{
+    position: absolute;
+    left: 0;
+    width: 45px;
+    height: 7px;
+    background: var(--color-ctas);
+    border-radius: 100px;
+}
+.bar span.top{
+    top: 0;
+}
+.bar span.middle{
+    top: 17px;
+}
+.bar span.bottom{
+    bottom: 0;
+}
+/* cuando tenga la clase .open, gira y cambia color */
+.bar.open span.top{
+    transform: rotate(45deg);
+    transform-origin: top left;
+    width: 48px;
+    left: 5px;
+}
+.bar.open span.middle{
+    transform: translateX(-20px);
+    opacity: 0;
+}
+.bar.open span.bottom{
+    transform: rotate(-45deg);
+    transform-origin: top left;
+    width: 48px;
+    bottom: -1px;
+}
+.bar.open span.top, .bar.open span.middle, .bar.open span.bottom {
+    background: var(--color-secundario-1);
+}
+/* Para el contenido principal del header  */
+.colsContainer{
+    width: 100%;
+    height: 100%;
+    gap: 30px;
+}
+.col1Header, .col2Header, .col3Header{
+    flex-direction: column;
+}
+/* COLUMNA 1 */
+.col1Header{
+    padding-top: 90px;
+}
+/* COLUMNA 2 */
+.col2Header{
+    justify-content: center;
+    align-items: center;
+}
+.col2Header img {
+    border-radius: 8px;
+    border:  10px solid var(--color-secundario-2);
+    border-top: none;
+    box-shadow: 0 4px 4px 0 rgba(92, 64, 51, 0.25);
+}
+/* COLUMNA 3 */
+.col3Header{
+    padding-top: 294px;
+}
+.col3Header p {
+    max-width: 100%;
+    font-size: 32px;
+}
+
+#cambiador {
+    display: inline-block;
+    color: var(--color-ctas);
+    width: 85px;
+    text-align: center;
+}
+/* +++++++++++++++++++++++++++ COMIENZO SECCIÓN VIDEO +++++++++++++++++++++++++++++++*/
+.sectionVideo {
+    height: fit-content;
+    flex-direction: column;
+    padding: 119px 0px !important;
+    gap: 60px;
+    width: 100%;
+}
+.containerColsVideo {
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+.col1Video1 {
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+/* col 1 */
+.colVideo1 {
+    width: 50%;
+    align-items: center;
+}
+.colVideo1 {
+    padding: 0px 100px;
+}
+.colVideo1 p {
+    text-align: start !important;
+    font-size: 28px;
+}
+/* col 2 */
+.videoFacade {
+    position: relative;
+    width: 900px;
+    height: 500px;
+    border-radius: 20px 0 0 20px;
+    overflow: hidden;
+    cursor: pointer;
+    align-items: end;
+    justify-content: end;
+}
+.videoFacade img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transform: scale(1.12); /* ajusta según cuánto quieras recortar */
+}
+/* botón de reproducción */
+.btnPlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-ctas);
+    color: var(--color-secundario-3);
+    border: none;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.btnPlay svg {
+    width: 50px;
+    height: 50px;
+    pointer-events: none;
+}
+.btnPlay:hover {
+    background-color: var(--color-secundario-1);
+}
+/* +++++++++++++++++++++++++++ COMIENZO SECCIÓN HABILIDADES +++++++++++++++++++++++++++*/
+.skills-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 75px;
+}
+.skills-carousel {
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 items por fila */
+    grid-template-rows: repeat(2, auto);   /* 2 filas */
+}
+.skill-item {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(0) scale(1);
+    transition: transform 0.4s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.skill-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.skill-item.lift {
+    transform: translateY(-20px) scale(1.1);
+}
+/* ESTOOOOOOOOOOOOOOOOO */
+.skill-item-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.skill-level {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    font-family: var(--fuente-ctas-span);
+    font-weight: 600;
+    font-size: 18px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    font-weight: 800;
+}
+.skill-item-wrapper:hover .skill-level, .skill-item.lift + .skill-level {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* +++++++++++++++++++++++++++ COMIENZO SECCIÓN PROJECTS +++++++++++++++++++++++++++*/
+.sectionProjects {
+    height: fit-content;
+    flex-direction: column;
+    position: relative;
+}
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+.radio-container {
+    border: none;        
+    margin: 0;           
+    padding: 0;          
+}
+.radio-container legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.circleProject {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-image: url('../assets/imgs/project-1.png');
+    z-index: 1;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* sombra base */
+}
+.circleProject:hover {
+    transform: translate(-50%, -50%) rotate(5deg);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35); /* sombra más profunda */
+}
+.containerCols{
+    width: 100%;
+    height: 100%;
+}
+.col1Projects, .col2Projects{
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+}
+/* col1 */
+.col1Projects{
+    padding-top: 65px;
+}
+/* col2 */
+.col2Projects{
+    align-items: end;
+}
+/* PARA NAVEGAR POR LOS PROYECTOS */
+.radio-container {
+    position: relative;             
+    flex-direction: column;
+    width: max-content;            
+    font-family: var(--fuente-ctas-span);
+    font-weight: 600;
+    font-size: 30px;
+}
+.radio-container input {
+    appearance: none;               
+    margin: 0;                      /* Elimina márgenes nativos */
+}
+.radio-container label {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: #21212180;                    /* Color gris por defecto */
+}
+/* Label activo en naranja sólido */
+.radio-container input:checked + label {
+    color: var(--color-ctas);
+}
+.radio-container .glider {
+    position: absolute;
+    left: 0;
+    width: 4px;                     /* Grosor de la barra */
+    background: var(--color-ctas);  /* Naranja intenso */
+    /* Altura dividida por número de radios (aquí 3) */
+    top: 0;
+    height: calc(100% / 3);
+}
+/* col 2 */
+.col2Projects{
+    padding-top: 493px;
+    gap: 32px;
+}
+.col2Projects h3{
+    text-transform: capitalize;
+    font-size: 32px;
+}
+.containerBtn{
+    justify-content: center;
+    gap: 37px;
+}
+/* +++++++++++++++++++++++++++ COMIENZO SECCIÓN SOBRE MÍ ++++++++++++++++++++++++++++*/
+.sectionAboutMe{
+    height: fit-content;
+    justify-content: center;
+}
+.col1AboutMe, .col2AboutMe{
+    flex-direction: column;
+    width: 50%;
+    height: 48rem;
+}
+/* columna 1 */
+.col1AboutMe{
+    justify-content: end;
+    box-shadow: 0 4px 4px 0 rgba(217, 101, 35, 0.25);
+    overflow: hidden;
+    position: relative;
+    width: 611px;
+    border-radius: 8px;
+    border:  10px solid var(--color-ctas);
+    border-top: none;
+}
+.col1AboutMe img{
+    width: 100%;
+    bottom: -5px;
+    position: absolute;
+}
+/* columna 2 */
+.col2AboutMe{
+    justify-content: center;
+    align-items: center;
+    gap: 34px;
+}
+.col2AboutMe p{
+    width: 60%;
+}
+/* PARA LAS REDES SOCIALES******** */
+.containerSocials{
+    height: fit-content;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.fila1, .fila2{
+    width: fit-content;
+    height: fit-content;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+}
+.social1, .social2, .social3, .social4{
+    width: 147px;
+    height: 147px;
+    border: 5px solid var(--color-ctas);
+    position: relative;
+}
+.social1 svg, .social2 svg, .social3 svg, .social4 svg{
+    position: absolute;
+}
+/* UBICACIÓN DEL SVG */
+.social1 svg, .social2 svg, .social3 svg, .social4 svg{
+    top: 40px;
+}
+.social1 svg, .social3 svg{
+    left: 55px;
+}
+.social2 svg, .social4 svg{
+    left: 25px;
+}
+.social1 {
+    border-radius: 500px 5px 5px 5px;
+}
+.social2 {
+    border-radius: 5px 500px 5px 5px;
+}
+.social3 {
+    border-radius: 5px 5px 5px 500px;
+}
+.social4 {
+    border-radius: 5px 5px 500px 5px;
+}
+/* hovers */
+.social1:hover, .social2:hover, .social3:hover, .social4:hover{
+    transform: scale(1.1);
+}
+.social1:hover {
+    background-color: #0A66C2;
+    border: 5px solid #0A66C2;
+}
+.social2:hover {
+    background-color: #E4405F;
+    border: 5px solid #E4405F;
+}
+.social3:hover {
+    background-color: #181717;
+    border: 5px solid #181717;
+}
+.social4:hover {
+    background-color: #FF0004;
+    border: 5px solid #FF0004;
+}
+.social1:hover svg path, .social2:hover svg path, .social3:hover svg path, .social4:hover svg path{
+    fill: var(--color-secundario-3) !important;
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+/* +++++++++++++++++++++++++++ COMIENZO SECCIÓN CONTACTO +++++++++++++++++++++++++++*/
+.sectionContact{
+    height: fit-content;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+.sectionContact h2{
+    width: 700px;
+}
+.sectionContact p{
+    width: 600px;
+}
+.sectionContact h3{
+    font-size: 25px;
+}
+/* formulario de contacto */
+.sectionContact form{
+    flex-direction: column;
+    background: linear-gradient(221deg, #F2EFE9 7.09%, #D96523 190.59%);
+    height: 778px;
+    width: 608px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    gap: 58px;
+    padding: 0rem 5rem;
+}
+.sectionContact form label, .hide{
+    display: none;
+}
+.sectionContact form button{
+    transform: scale(.9);
+}
+/* para los inputs */
+.input-wrapper {
+    flex-direction: column-reverse;
+    position: relative;
+    font-size: 20px;
+    text-align: start;
+    width: 100%;
+}
+
+.input-wrapper input, .input-wrapper textarea {
+    outline: none;
+    border: 1.8px solid var(--color-ctas);
+    padding: 9px 125px 9px 9px;
+    position: relative;
+    border-radius: 10px;
+}
+.input-wrapper input:focus, .input-wrapper textarea:focus {
+    border-style: dashed;
+    border-radius: 0.375rem;
+    border-color: var(--color-secundario-1);
+}
+.input-wrapper input::placeholder, .input-wrapper textarea::placeholder {
+    position: absolute;
+    transition: all 0.5s ease;
+    font-size: 20px;
+}
+.input-wrapper input:focus::placeholder, .input-wrapper textarea:focus::placeholder {
+    padding-top: 2.5rem;
+}
+.input-wrapper span {
+    padding-left: 0.5rem;
+    transition: all 0.5s ease;
+    opacity: 0;
+    transform: translateY(-1.25rem);
+    color: var(--color-textos);
+}
+.input-wrapper input:focus + span, .input-wrapper textarea:focus + span{
+    opacity: 1;
+    transform: translateY(0);
+}
+/* +++++++++++++++++++++++++++ COMIENZO FOOTER +++++++++++++++++++++++++++++++*/
+footer{
+    height: fit-content;
+    align-items: center;
+    flex-direction: column;
+    gap: 66px;
+}
+footer nav{
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 76px;
+}
+.cvBtn {
+    position: relative;
+    background-color: var(--color-ctas);
+    padding: 1rem;
+    border-radius: 500px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s ease;
+}
+.cvBtn:hover {
+    background-color: var(--color-secundario-1);
+}
+/* Tooltip estilo nubecita */
+.cvBtn::after {
+    content: "CV";
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #F2EFE9;
+    color: green;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-size: 18px;
+    z-index: 10;
+}
+/* Mostrar nubecita al hacer hover */
+.cvBtn:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
+.textsContainer{
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.textsContainer h3{
+    font-size: 30px;
+}
+.textsContainer p{
+    font-size: 25px;
+}
+/* -----------------------MEDIA QUERIES-------------------- */
+/* LAPTOP */
+@media screen and (max-width: 1024px){
+    /* HEADER */
+    header{
+        padding: 0px 30px;
+    }
+    h1{
+        font-size: 30px;
+    }
+    .bar{
+        display: block;
+    }
+    .frase{
+        font-size: 25px !important;
+    }
+    .col2Header img{
+        height: 500px;
+    }
+    /* VIDEO SECTION */
+    .sectionVideo{
+        padding: 80px 0px !important;
+    }
+    .logo, .logo img{
+        width: 120px;
+        height: 120px;
+    }
+    /* BOTÓN HAMBURGUESA */
+    header nav ul {
+        position: absolute;
+        top: -100vh;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: var(--color-fondo);
+        z-index: 10;
+        gap: 50px;
+        padding: 50px 0px;
+    }
+    header nav ul.active {
+        top: 100px; 
+    }
+    header nav ul li.close-menu {
+        position: absolute;
+        top: 10px;
+        right: 30px;
+        font-size: 50px;
+        cursor: pointer;
+    }
+    #menu {
+        position: absolute;
+        top: -100vh;
+        width: 300px;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        transition: top 0.4s ease;
+        z-index: 10;
+        box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        border: 4px solid var(--color-ctas);
+        animation: breatheBorder 3s ease-in-out infinite;
+    }
+    @keyframes breatheBorder {
+        0%, 100% {
+            box-shadow: 0 0 4px 0 var(--color-ctas);
+        }
+        50% {
+            box-shadow: 0 0 8px 4px var(--color-ctas);
+        }
+    }
+    #menu.active {
+        top: 0px;
+    }
+    .logo2{
+        display: block;
+    }
+    .close-menu {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 40px;
+        cursor: pointer;
+    }
+    .close-menu span:hover{
+        color: var(--color-secundario-1);
+    }
+    #cambiador{
+        width: 70px;
+    }
+    .colVideo1{
+        padding: 0px 50px;
+    }
+    .colVideo1 p, .col2AboutMe p, .sectionContact p{
+        font-size: 25px;
+    }
+    .videoFacade{
+        width: 700px;
+        height: 400px;
+    }
+    h2{
+        font-size: 35px;
+    }
+    .skill-item{
+        width: 80px;
+        height: 80px;
+    }
+    .circleProject{
+        width: 400px;
+        height: 400px;
+    }
+    .col1AboutMe img{
+        bottom: -20px;
+        width: 100%;
+    }
+    .col1AboutMe{
+        height: 45rem;
+    }
+    .col2AboutMe p{
+        width: 80%;
+    }
+    section, footer{
+        padding: 50px 40px !important;
+    }
+    .cvBtn{
+        transform: scale(.9);
+    }
+}
+/* TABLET */
+@media screen and (max-width: 768px){
+    .colsContainer{
+        gap: 30px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .col3Header, .col1Header{
+        padding-top: 0px;
+    }
+    h1{
+        font-size: 25px;
+    }
+    .frase{
+        font-size: 20px !important;
+    }
+    .col2Header img{
+        height: 400px;
+    }
+    header nav *{
+        transform: scale(0.95) !important;
+    }
+    #cambiador{
+        width: 52px;
+    }
+    h2{
+        font-size: 28px;
+    }
+    .colVideo1 p, .col2AboutMe p, .sectionContact p{
+        font-size: 20px;
+    }
+    header{
+        padding: 0px 20px;
+    }
+    .section, footer, #CONTACTO{
+        padding: 30px 20px !important;
+    }
+    .sectionVideo{
+        gap: 20px;
+    }
+    .containerColsVideo{
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .containerColsVideo p{
+        text-align: center !important;
+    }
+    .colVideo1{
+        padding: 0px;
+    }
+    .videoFacade{
+        width: 500px;
+        height: 350px;
+        border-radius: 20px;
+    }
+    .skill-item{
+        width: 70px;
+        height: 70px;
+    }
+    .circleProject{
+        width: 300px;
+        height: 300px;
+    }
+    .sectionProjects h3{
+        font-size: 28px;
+    }
+    .radio-container{
+        font-size: 25px;
+    }
+    .btn{
+        font-size: 20px;
+        padding: .7rem 2.5rem;
+    }
+    .arrowUpDown, #bot-container{
+        transform: scale(.9) !important;
+    }
+    .sectionAboutMe{
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .col1AboutMe, .col2AboutMe{
+        width: 60%;
+        height: 30rem;
+    }
+    .col2AboutMe{
+        gap: 20px;
+    }
+    .containerSocials{
+        gap: 5px;
+    }
+    .containerSocials *{
+        transform: scale(.95);
+    }
+    .sectionContact{
+        gap: 20px;
+    }
+    .sectionContact p{
+        width: 60%;
+    }
+    .sectionContact form{
+        transform: scale(.80);
+    }
+    footer nav, footer nav ul{
+        flex-direction: column;
+    }
+    .cvBtn{
+        transform: scale(.8);
+    }
+    footer, footer nav, footer nav ul{
+        gap: 35px;
+    }
+    footer nav ul li a{
+        font-size: 25px;
+    }
+    .textsContainer h3{
+        font-size: 25px;
+    }
+    .textsContainer p{
+        font-size: 20px;
+    }
+}
+/* MOBILE */
+@media screen and (max-width: 650px){
+    .colsContainer{
+        gap: 30px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    header{
+        gap: 30px;
+    }
+    header nav *{
+        transform: scale(0.9) !important;
+    }
+    .col2Header img{
+        height: 300px;
+    }
+    .col3Header, .col1Header{
+        padding-top: 0px;
+    }
+    h2{
+        font-size: 23px;
+    }
+    .videoFacade{
+        width: 350px;
+        height: 300px;
+    }
+    .skills-carousel{
+        grid-template-columns: repeat(3, 1fr); /* 3 items por fila */
+        grid-template-rows: repeat(4, auto);   /* 4 filas */
+    }
+    .skill-item{
+        width: 60px;
+        height: 60px;
+    }
+    .radio-container{
+        font-size: 20px;
+    }
+    .circleProject{
+        margin-top: 30px;
+        width: 250px;
+        height: 250px;
+    }
+    .col2Projects h3{
+        font-size: 24px;
+    }
+    .btn{
+        font-size: 18px;
+        padding: .6rem 2rem;
+    }
+    section, footer, #CONTACTO, .sectionVideo{
+        padding: 40px 25px !important;
+    }
+    .colVideo1{
+        width: 80%;
+    }
+    .col2Projects{
+        text-align: end;
+    }
+    .col1AboutMe, .col2AboutMe{
+        width: 80%;
+        height: 25rem;
+    }
+    .containerSocials{
+        gap: 2px;
+    }
+    .fila1, .fila2{
+        gap: 5px;
+    }
+    .social1, .social2, .social3, .social4{
+        width: 100px;
+        height: 100px;
+        border: 3px solid var(--color-ctas);
+    }
+    .social1 svg, .social2 svg, .social3 svg, .social4 svg{
+        width: 40px;
+        height: 40px;
+        top: 25px;
+    }
+    .social2 svg{
+        top: 27px;
+    }
+    .social1 svg, .social3 svg{
+        left: 45px;
+    }
+    .social2 svg, .social4 svg{
+        left: 10px;
+    }
+    .sectionContact p, .sectionContact h2{
+        width: 80%;
+    }
+    .sectionContact form{
+        width: 120%;
+    }
+    .arrowUpDown, #bot-container{
+        right: 20px !important;
+    }
+    .cvBtn{
+        transform: scale(.7);
+    }
+    .textsContainer h3{
+        font-size: 20px;
+    }
+    .textsContainer p{
+        width: 80%;
+        font-size: 18px;
+    }
+}
+/* SMALL MOBILE */
+@media screen and (max-width: 376px){
+    .videoFacade{
+        width: 300px;
+        height: 250px;
+    }
+}
+/* SMALL SMALL MOBILE */
+@media screen and (max-width: 320px){
+    h1{
+        font-size: 23px;
+    }
+    .skills-section h2{
+        font-size: 18px;
+    }
+    .frase, .containerColsVideo p, .col2AboutMe p, .sectionContact p{
+        font-size: 18px !important;
+    }
+    header{
+        padding: 0px 15px;
+        align-items: center;
+    }
+    header nav h1 { 
+        font-size: 20px; 
+    }
+    header nav a { 
+        font-size: 22px; 
+    }
+    .arrowUpDown, #bot-container{
+        transform: scale(.8);
+        right: 10px !important;
+    }
+    .videoFacade{
+        width: 250px;
+        height: 200px;
+    }
+    section, footer, #CONTACTO, .sectionVideo{
+        padding: 30px 18px !important;
+    }
+    .skill-item{
+        width: 50px;
+        height: 50px;
+    }
+    .circleProject{
+        width: 200px;
+        height: 200px;
+    }
+    .col2Projects h3{
+        font-size: 20px;
+    }
+    .btn{
+        font-size: 16px;
+        padding: .5rem 1.5rem;
+    }
+    .radio-container{
+        font-size: 18px;
+    }
+    .col1AboutMe{
+        height: 18rem;
+    }
+    .sectionContact h2{
+        width: 90%;
+    }
+    .cvBtn{
+        transform: scale(.6);
+    }
+    .textsContainer h3{
+        font-size: 18px;
+    }
+    .textsContainer p{
+        font-size: 16px;
+    }
+    footer nav ul li a{
+        font-size: 20px;
+    }
+}
+
+
+
+
+
+
+
+
+
+

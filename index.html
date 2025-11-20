@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Meta y SEO -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steven Rojas | Contenido Audiovisual y Desarrollo Web con Propósito.</title>
+    <meta name="description"
+        content="Portafolio de Steven Rojas, creador audiovisual y desarrollador web con propósito.">
+    <!-- FAVICON: .ICO EN RAÍZ (OBLIGATORIO) + .PNG COMO RESPALDO -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/CSS/style.css">
+</head>
+
+<body>
+    <a href="#mainContent" class="skip-link">Saltar al contenido</a>
+    <!-- Flecha hacia arriba -->
+    <div id="goUp" class="arrowUpDown fadeUp animation">
+        <svg class="arrowIcon animation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path fill="#f2efe9" d="M10 0.75L15.5 6H12v13H8V6H4.5z" />
+        </svg>
+    </div>
+    <div id="tsparticles"></div>
+    <header class="flex padding">
+        <nav class="flex">
+            <a href="#" class="logo">
+                <img src="./assets/imgs/logoFinal.webp" alt="logo Steven Rojas" class="animation">
+            </a>
+            <ul class="flex" id="menu">
+                <li>
+                    <a href="#" class="logo2">
+                        <img src="./assets/imgs/logoFinal.webp" alt="logo Steven Rojas" class="animation">
+                    </a>
+                </li>
+                <li class="close-menu"><span class="animation">&times;</span></li>
+                <li><a href="#PROYECTOS" class="animation" data-lang="nav_projects">PROYECTOS</a></li>
+                <li><a href="#SOBREMI" class="animation" data-lang="nav_about">SOBRE MÍ</a></li>
+                <li><a href="#CONTACTO" class="animation" data-lang="nav_contact">CONTACTO</a></li>
+                <li><a href="galeria_videos/index.html" class="animation" data-lang="nav_gallery">GALERÍA</a></li>
+            </ul>
+            <div class="containerActions flex">
+                <div class="idiomaSwitch flex">
+                    <span data-lang="lang_es">ES</span>
+                    <div class="toggle-switch">
+                        <input class="toggle-input" id="toggle" type="checkbox">
+                        <label class="toggle-label" for="toggle" aria-label="Cambiar idioma"></label>
+                    </div>
+                    <span data-lang="lang_en">EN</span>
+                </div>
+                <!-- Menu de hamburguesa -->
+                <div class="bar" id="menu-toggle" role="button" tabindex="0" aria-label="Abrir menú de navegación">
+                    <span class="top animation"></span>
+                    <span class="middle animation"></span>
+                    <span class="bottom animation"></span>
+                </div>
+            </div>
+        </nav>
+        <div class="colsContainer flex">
+            <div class="col1Header">
+                <h1 data-lang="header_title">Steven Rojas Desarrollo Web con Visión Audiovisual.</h1>
+            </div>
+            <div class="col2Header">
+                <img src="./assets/imgs/picHeader.webp" alt="imagen de steven rojas vistiendo una camisa blanca"
+                    fetchpriority="high">
+            </div>
+            <div class="col3Header">
+                <p class="frase" data-lang="header_phrase">Construyendo experiencias en <span id="cambiador"
+                        class="animation">Web</span> con propósito, uniendo creatividad e innovación.</p>
+            </div>
+            <!-- PARA LA FLECHA QUE ES PARA BAJAR -->
+        </div>
+    </header>
+    <main id="mainContent">
+        <!-- SECTION #1 VIDEO -->
+        <section class="sectionVideo flex">
+            <h2 data-lang="video_title">Quién soy y qué me mueve</h2>
+            <article class="containerColsVideo flex">
+                <div class="colVideo1 flex">
+                    <p data-lang="video_desc">Desarrollo páginas web y contenido audiovisual, creando
+                        <span>experiencias</span> digitales <span>con propósito</span>.
+                    </p>
+                </div>
+                <div class="videoFacade flex" onclick="loadVideo(this)" tabindex="0" id="video-facade">
+                    <img src="https://img.youtube.com/vi/jOeX9W99U9s/maxresdefault.jpg  " alt="Video de Steven Rojas"
+                        loading="lazy">
+                    <button class="btnPlay flex animation" aria-label="Reproducir video">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </button>
+                </div>
+            </article>
+        </section>
+        <!-- SECTION #2 HABILIDADES -->
+        <section class="skills-section flex">
+            <h2 data-lang="skills_title">Cada habilidad que cultivo es una forma de acercarme a lo que vine a
+                <span>construir...</span>
+            </h2>
+            <div class="skills-carousel flex"></div>
+        </section>
+        <!-- SECTION #3 PROYECTOS -->
+        <section class="sectionProjects padding flex animation" id="PROYECTOS">
+            <h2 data-lang="projects_title">Proyectos recientes</h2>
+            <article class="containerCols flex">
+                <div class="col1Projects flex">
+                    <!-- PARA MOVERSE EN LOS PROJECTOS -->
+                    <fieldset class="radio-container flex">
+                        <legend class="visually-hidden">Selecciona un proyecto</legend>
+                        <input id="proj1" name="project" type="radio" checked>
+                        <label class="animation" for="proj1" data-lang="project_1_label">Proyecto #1</label>
+                        <input id="proj2" name="project" type="radio">
+                        <label class="animation" for="proj2" data-lang="project_2_label">Proyecto #2</label>
+                        <input id="proj3" name="project" type="radio">
+                        <label class="animation" for="proj3" data-lang="project_3_label">Proyecto #3</label>
+                        <div class="glider animation"></div>
+                    </fieldset>
+                </div>
+                <div class="col2Projects flex">
+                    <h3 id="projectTitle" data-lang="project_title">Congreso De Café</h3>
+                    <div class="containerBtn flex">
+                        <a id="visitBtn" class="btn" target="_blank">
+                            <span class="transition"></span>
+                            <span class="label" data-lang="btn_visit">Visitar</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <a class="circleProject animation" target="_blank" href="https://congreso-de-cafe.vercel.app/  "
+                style="background-image: url('./assets/imgs/project-1.png');"
+                aria-label="Ir al proyecto Congreso de Café"></a>
+        </section>
+        <!-- SECTION #4 SOBRE MI -->
+        <section class="sectionAboutMe flex" id="SOBREMI">
+            <article class="col1AboutMe flex">
+                <img src="./assets/imgs/imgAboutMe.webp" alt="imagen de steven rojas sosteniendo una cámara">
+            </article>
+            <article class="col2AboutMe flex">
+                <h2 data-lang="about_title">Conóceme más</h2>
+                <p data-lang="about_desc">Más de <span> 2 años </span>creciendo, aprendiendo y creando con próposito.
+                </p>
+                <div class="containerSocials flex">
+                    <div class="fila1 flex">
+                        <!-- SOCIAL 1 LINKED IN -->
+                        <a href="http://www.linkedin.com/in/stevenrojasdev" target="_blank"
+                            class="social1 flex animation">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 20 20">
+                                <path fill="#D96523"
+                                    d="M5 3c0 1.062-.71 1.976-2.001 1.976C1.784 4.976 1 4.114 1 3.052C1 1.962 1.76 1 3 1s1.976.91 2 2M1 19V6h4v13zm6-8.556c0-1.545-.051-2.836-.102-3.951h3.594l.178 1.723h.076c.506-.811 1.746-2 3.822-2C17.1 6.216 19 7.911 19 11.558V19h-4v-6.861c0-1.594-.607-2.81-2-2.81c-1.062 0-1.594.86-1.873 1.569c-.102.254-.127.608-.127.963V19H7z" />
+                            </svg>
+                            <span class="hide">LinkedIn: Perfil profesional de Steven Rojas</span>
+                            <span class="sr-only">(abre en nueva ventana)</span>
+                        </a>
+                        <!-- SOCIAL 2 INSTAGRAM -->
+                        <a href="https://www.instagram.com/stevenrojas.dev  " target="_blank"
+                            class="social2 flex animation">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 20 20">
+                                <path fill="#D96523"
+                                    d="M17 1H3c-1.1 0-2 .9-2 2v14c0 1.101.9 2 2 2h14c1.1 0 2-.899 2-2V3c0-1.1-.9-2-2-2M9.984 15.523a5.54 5.54 0 0 0 5.538-5.539c0-.338-.043-.664-.103-.984H17v7.216a.69.69 0 0 1-.693.69H3.693a.69.69 0 0 1-.693-.69V9h1.549c-.061.32-.104.646-.104.984a5.54 5.54 0 0 0 5.539 5.539M6.523 9.984a3.461 3.461 0 1 1 6.922 0a3.461 3.461 0 0 1-6.922 0M16.307 6h-1.615A.694.694 0 0 1 14 5.308V3.691c0-.382.31-.691.691-.691h1.615c.384 0 .694.309.694.691v1.616c0 .381-.31.693-.693.693" />
+                            </svg>
+                            <span class="hide">Instagram: Portafolio visual de Steven Rojas</span>
+                            <span class="sr-only">(abre en nueva ventana)</span>
+                        </a>
+                    </div>
+                    <div class="fila2 flex">
+                        <!-- SOCIAL 3 GITHUB -->
+                        <a href="https://github.com/Punjiga  " target="_blank" class="social3 flex animation">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 20 20">
+                                <path fill="#D96523"
+                                    d="M13.18 11.309c-.718 0-1.3.807-1.3 1.799c0 .994.582 1.801 1.3 1.801s1.3-.807 1.3-1.801c-.001-.992-.582-1.799-1.3-1.799m4.526-4.683c.149-.365.155-2.439-.635-4.426c0 0-1.811.199-4.551 2.08c-.575-.16-1.548-.238-2.519-.238c-.973 0-1.945.078-2.52.238C4.74 2.399 2.929 2.2 2.929 2.2c-.789 1.987-.781 4.061-.634 4.426C1.367 7.634.8 8.845.8 10.497c0 7.186 5.963 7.301 7.467 7.301l1.734.002l1.732-.002c1.506 0 7.467-.115 7.467-7.301c0-1.652-.566-2.863-1.494-3.871m-7.678 10.289h-.056c-3.771 0-6.709-.449-6.709-4.115c0-.879.31-1.693 1.047-2.369C5.537 9.304 7.615 9.9 9.972 9.9h.056c2.357 0 4.436-.596 5.664.531c.735.676 1.045 1.49 1.045 2.369c0 3.666-2.937 4.115-6.709 4.115m-3.207-5.606c-.718 0-1.3.807-1.3 1.799c0 .994.582 1.801 1.3 1.801s1.301-.807 1.301-1.801c0-.992-.582-1.799-1.301-1.799" />
+                            </svg>
+                            <span class="hide">GitHub: Repositorios de código de Steven Rojas</span>
+                            <span class="sr-only">(abre en nueva ventana)</span>
+                        </a>
+                        <!-- SOCIAL 4 YOUTUBE -->
+                        <a href="https://www.youtube.com/@Punjiga182  " target="_blank" class="social4 flex animation">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 20 20">
+                                <path fill="#D96523"
+                                    d="M10 2.3C.172 2.3 0 3.174 0 10s.172 7.7 10 7.7s10-.874 10-7.7s-.172-7.7-10-7.7m3.205 8.034l-4.49 2.096c-.393.182-.715-.022-.715-.456V8.026c0-.433.322-.638.715-.456l4.49 2.096c.393.184.393.484 0 .668" />
+                            </svg>
+                            <span class="hide">YouTube: Contenido audiovisual de Steven Rojas</span>
+                            <span class="sr-only">(abre en nueva ventana)</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <!-- SECTION #5 CONTACTO -->
+        <section class="sectionContact flex" id="CONTACTO">
+            <h2 data-lang="contact_title">Contactame ahora mismo para comenzar</h2>
+            <p data-lang="contact_desc">Si tenés un proyecto o propuesta, podés escribirme directamente aquí. Respondo
+                <span>menos de 24 horas.</span>
+            </p>
+            <form class="flex" id="mi-form">
+                <h3 data-lang="form_title">Formulario</h3>
+                <!-- nombre -->
+                <div class="input-wrapper animation flex">
+                    <label for="nombre" data-lang="form_name_label">Escribe tu nombre</label>
+                    <input id="nombre" name="name" placeholder="Tu nombre" type="text" class="animation" required>
+                    <span aria-hidden="true" data-lang="form_name_placeholder">Escribe tu nombre</span>
+                </div>
+                <!-- email -->
+                <div class="input-wrapper animation flex">
+                    <label for="correo" data-lang="form_email_label">Escribe tu correo</label>
+                    <input id="correo" name="email" placeholder="tucorreo@ejemplo.com" type="email" class="animation"
+                        required>
+                    <span aria-hidden="true" data-lang="form_email_placeholder">Escribe tu email</span>
+                </div>
+                <!-- mensaje -->
+                <div class="input-wrapper animation flex">
+                    <label for="mensaje" data-lang="form_message_label">Escribe tu mensaje</label>
+                    <textarea id="mensaje" name="message" maxlength="250" required placeholder="Estoy interesad@ en..."
+                        class="animation"></textarea>
+                    <span aria-hidden="true" data-lang="form_message_placeholder">Escribe tu mensaje</span>
+                </div>
+                <button id="submitFormBtn" class="btn" type="submit">
+                    <span class="transition"></span>
+                    <span class="label" data-lang="btn_send">Enviar</span>
+                </button>
+            </form>
+        </section>
+    </main>
+    <footer class="flex">
+        <nav class="flex">
+            <a href="#" class="logo">
+                <img src="./assets/imgs/logoFinal.webp" alt="logo Steven Rojas" class="animation">
+            </a>
+            <ul class="flex">
+                <li><a href="#PROYECTOS" class="animation" data-lang="nav_projects">PROYECTOS</a></li>
+                <li><a href="#SOBREMI" class="animation" data-lang="nav_about">SOBRE MÍ</a></li>
+                <li><a href="#CONTACTO" class="animation" data-lang="nav_contact">CONTACTO</a></li>
+            </ul>
+        </nav>
+        <a id="cvDownloadLink" href="./assets/CV-WEB-ES.pdf" download="CV-Steven-Rojas.pdf" class="animation cvBtn"
+            aria-label="Descargar CV en PDF">
+            <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 152 136" fill="none">
+                <path opacity="0.95"
+                    d="M113.906 45.3876H91.2596V0.0947266H61.0643V45.3876H38.4179L76.1619 83.1317L113.906 45.3876ZM146.653 94.6965C145.068 93.0055 134.492 81.6899 131.472 78.7383C129.357 76.7079 126.538 75.5768 123.606 75.5829H110.343L133.473 98.184H106.72C106.355 98.1742 105.995 98.2622 105.677 98.4387C105.358 98.6153 105.093 98.874 104.908 99.188L98.748 113.327H53.5759L47.4161 99.188C47.2256 98.8793 46.9589 98.6247 46.6416 98.4489C46.3243 98.2731 45.9671 98.1818 45.6043 98.184H18.8513L41.9734 75.5829H28.7176C25.7208 75.5829 22.8598 76.7831 20.8518 78.7383C17.8323 81.6974 7.25636 93.0131 5.67111 94.6965C1.97974 98.6294 -0.0508919 101.762 0.915357 105.635L5.15024 128.84C6.11649 132.72 10.3665 135.905 14.6014 135.905H137.738C141.973 135.905 146.223 132.72 147.189 128.84L151.424 105.635C152.375 101.762 150.352 98.6294 146.653 94.6965Z"
+                    fill="#F2EFE9" />
+            </svg>
+        </a>
+        <div class="textsContainer flex">
+            <h3 data-lang="footer_quote">"Creando con propósito."</h3>
+            <p data-lang="footer_copyright">© 2025 Steven Rojas – Todos los derechos reservados</p>
+        </div>
+    </footer>
+    <!-- Scripts funcionales diferidos -->
+    <script src="./JS/libs/sweetalert2.min.js" defer></script>
+    <script src="./JS/libs/email.min.js" defer></script>
+    <script src="./JS/main.js" defer></script>
+    <!-- Scripts visuales diferidos -->
+    <script src="./JS/libs/tsparticles.bundle.min.js" defer></script>
+    <script src="./JS/libs/typed.min.js" defer></script>
+    <!-- Chatbot de Steven Rojas – Burbuja lista -->
+    <div id="bot-container"
+        style="position: fixed; bottom: 120px; right: 30px; z-index: 10000; cursor: pointer; width: 60px; height: 60px; border-radius: 50%; background-color: #d96523; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(217,101,35,0.4);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <path
+                d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z" />
+        </svg>
+    </div>
+    <iframe id="bot-iframe"
+        src="https://cdn.botpress.cloud/webchat/v3.4/shareable.html?configUrl=https://files.bpcontent.cloud/2025/11/19/03/20251119032049-9JP8SOAK.json "
+        style="display: none; width: 400px; height: 600px; border: none; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);"></iframe>
+    <script>
+        const container = document.getElementById('bot-container');
+        const iframe = document.getElementById('bot-iframe');
+        let chatOpen = false;
+        container.addEventListener('click', () => {
+            if (chatOpen) {
+                iframe.style.display = 'none';
+                chatOpen = false;
+            } else {
+                iframe.style.display = 'block';
+                iframe.style.position = 'fixed';
+                iframe.style.bottom = '100px';
+                iframe.style.right = '20px';
+                iframe.style.zIndex = '10000';
+                chatOpen = true;
+            }
+        });
+        // Cierra al click fuera
+        document.addEventListener('click', (e) => {
+            if (!container.contains(e.target) && !iframe.contains(e.target) && chatOpen) {
+                iframe.style.display = 'none';
+                chatOpen = false;
+            }
+        });
+    </script>
+</body>
+
+</html>
