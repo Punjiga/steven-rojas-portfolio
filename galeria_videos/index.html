@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,20 +9,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.birds.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./CSS/style.css">
     <link rel="icon" href="./logoFinal2.png" type="image/png">
     <script async src="//www.instagram.com/embed.js"></script>
 </head>
-
 <body>
     <!-- Header Section -->
     <header class="relative min-h-screen flex items-center justify-center overflow-hidden">
         <a href="../index.html" class="back-arrow" aria-label="Volver al inicio">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
         </a>
@@ -31,12 +26,8 @@
         <div class="container mx-auto px-6 text-center relative z-10">
             <div class="fade-in">
                 <h1 class="font-display text-5xl md:text-7xl font-bold mb-6 text-white">Visual Stories</h1>
-                <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">Bienvenido a mi
-                    galería de contenido. Aquí encontrarás una colección curada de contenido visual que refleja mi
-                    pasión por el storytelling digital.</p>
-                <button onclick="document.getElementById('video-gallery').scrollIntoView({behavior:'smooth'})"
-                    class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/30 transition-all duration-300">Ver
-                    galería</button>
+                <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">Bienvenido a mi galería de contenido. Aquí encontrarás una colección curada de contenido visual que refleja mi pasión por el storytelling digital.</p>
+                <button onclick="document.getElementById('video-gallery').scrollIntoView({behavior:'smooth'})" class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/30 transition-all duration-300">Ver galería</button>
             </div>
         </div>
     </header>
@@ -87,7 +78,7 @@
         Añadir esto al principio: https://images.weserv.nl/?url=
         Ejemplo completo: https://images.weserv.nl/?url=https://www.instagram.com/p/ID_AQUI/media/?size=l -->
         <div id="video-gallery" class="video-grid">
-            <!-- IG Post 1 -->
+            <!-- IG Post  -->
             <div class="video-thumbnail fade-in bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
                 data-categories="publicaciones" onclick="openIgModal('DRJJSKIDnDl')">
                 <div class="relative">
@@ -109,7 +100,27 @@
                         IG</span>
                 </div>
             </div>
-            <!-- YT Short 1 -->
+            <!-- IG Post  -->
+            <div class="video-thumbnail fade-in bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
+                data-categories="publicaciones" onclick="openIgModal('DRh5nkij83z')">
+                <div class="relative">
+                    <img src="https://images.weserv.nl/?url=https://www.instagram.com/p/DRh5nkij83z/media/?size=l" alt="Formulario contacto y propuesta" class="w-full h-48 object-cover">
+                    <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                        <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-gray-800 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display text-lg font-semibold mb-2">¿Trabajas mucho y los resultados no llegan?</h3>
+                    <p class="text-gray-600 text-sm">¡Checá este formulario y pongamonos en contacto!</p>
+                    <span class="inline-block mt-3 px-3 py-1 bg-pink-100 text-pink-800 text-xs rounded-full">Publicación
+                        IG</span>
+                </div>
+            </div>
+            <!-- YT Short  -->
             <div class="video-thumbnail fade-in bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
                 data-categories="shorts" onclick="openModal('XhKRbBs3xRc')">
                 <div class="relative">
@@ -130,7 +141,7 @@
                     <span class="inline-block mt-3 px-3 py-1 bg-red-100 text-red-800 text-xs rounded-full">Short</span>
                 </div>
             </div>
-            <!-- IG Post 2 -->
+            <!-- IG Post  -->
             <div class="video-thumbnail fade-in bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
                 data-categories="publicaciones" onclick="openIgModal('DQhuXDZEhbo')">
                 <div class="relative">
@@ -152,7 +163,7 @@
                         IG</span>
                 </div>
             </div>
-            <!-- IG Post 3 -->
+            <!-- IG Post  -->
             <div class="video-thumbnail fade-in bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
                 data-categories="publicaciones" onclick="openIgModal('DNyPNh_3Jc3')">
                 <div class="relative">
@@ -174,7 +185,7 @@
                         IG</span>
                 </div>
             </div>
-            <!-- IG Post 4 -->
+            <!-- IG Post  -->
             <div class="video-thumbnail fade-in bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
                 data-categories="publicaciones" onclick="openIgModal('DNpNPvpO7l0')">
                 <div class="relative">
@@ -196,7 +207,7 @@
                         IG</span>
                 </div>
             </div>
-            <!-- IG Post 5 -->
+            <!-- IG Post  -->
             <div class="video-thumbnail fade-in bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
                 data-categories="publicaciones" onclick="openIgModal('DKhv_YNOrKt')">
                 <div class="relative">
@@ -239,7 +250,7 @@
                     <span class="inline-block mt-3 px-3 py-1 bg-red-100 text-red-800 text-xs rounded-full">Short</span>
                 </div>
             </div>
-            <!-- IG Post 6 -->
+            <!-- IG Post  -->
             <div class="video-thumbnail fade-in bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
                 data-categories="publicaciones" onclick="openIgModal('DKbEDyMOUk8')">
                 <div class="relative">
@@ -261,7 +272,7 @@
                         IG</span>
                 </div>
             </div>
-            <!-- IG Post 7 -->
+            <!-- IG Post  -->
             <div class="video-thumbnail fade-in bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
                 data-categories="publicaciones" onclick="openIgModal('DKNRjbpOIUB')">
                 <div class="relative">
@@ -283,7 +294,7 @@
                         IG</span>
                 </div>
             </div>
-            <!-- YT Video 1 -->
+            <!-- YT Video  -->
             <div class="video-thumbnail fade-in bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
                 data-categories="videos" onclick="openModal('jOeX9W99U9s')">
                 <div class="relative">
@@ -305,7 +316,7 @@
                         class="inline-block mt-3 px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Video</span>
                 </div>
             </div>
-            <!-- YT Video 2 -->
+            <!-- YT Video  -->
             <div class="video-thumbnail fade-in bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
                 data-categories="videos" onclick="openModal('uHyZ-Y3V898')">
                 <div class="relative">
@@ -393,7 +404,6 @@
             <path fill="#f2efe9" d="M10 0.75L15.5 6H12v13H8V6H4.5z" />
         </svg>
     </div>
-
     <!-- Chatbot -->
     <div id="bot-container">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
@@ -401,9 +411,7 @@
                 d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z" />
         </svg>
     </div>
-    <iframe id="bot-iframe"
-        src="https://cdn.botpress.cloud/webchat/v3.4/shareable.html?configUrl=https://files.bpcontent.cloud/2025/11/19/03/20251119032049-9JP8SOAK.json "></iframe>
-
+    <iframe id="bot-iframe" src="https://cdn.botpress.cloud/webchat/v3.4/shareable.html?configUrl=https://files.bpcontent.cloud/2025/11/19/03/20251119032049-9JP8SOAK.json "></iframe>
     <script src="./JS/main.js"></script>
 </body>
 
