@@ -51,6 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
         en: ["Web", "Photo", "Video"]
     };
     let idiomaActual = 'es';
+    let currentTextos = {}; // Store current translations globally
+
     const cambiadorId = "cambiador";
     let intervaloCambiador = null;
     function iniciarAnimacionCambiador() {
@@ -122,32 +124,49 @@ document.addEventListener('DOMContentLoaded', function () {
     const titulo = document.getElementById("projectTitle");
     const circle = document.querySelector(".circleProject");
     const btn = document.getElementById("visitBtn");
-    document.querySelectorAll("input[name='project']").forEach(input => {
-        input.addEventListener("change", () => {
-            if (input.id === "proj1") {
-                if (titulo) titulo.textContent = "Congreso de Café";
-                if (circle) {
-                    circle.style.backgroundImage = "url('./assets/imgs/project-1.png')";
-                    circle.href = "https://congreso-de-cafe.vercel.app/";
-                }
-                if (btn) btn.href = "https://congreso-de-cafe.vercel.app/";
-            } else if (input.id === "proj2") {
-                if (titulo) titulo.textContent = "Fit Force";
-                if (circle) {
-                    circle.style.backgroundImage = "url('./assets/imgs/project-2.png')";
-                    circle.href = "https://fit-force-final.vercel.app/";
-                }
-                if (btn) btn.href = "https://fit-force-final.vercel.app/";
-            } else if (input.id === "proj3") {
-                if (titulo) titulo.textContent = "Bonfire Lit";
-                if (circle) {
-                    circle.style.backgroundImage = "url('./assets/imgs/project-3.png')";
-                    circle.href = "https://bonfire-lit.vercel.app/";
-                }
-                if (btn) btn.href = "https://bonfire-lit.vercel.app/";
+
+    function updateProjectContent() {
+        const selectedRadio = document.querySelector("input[name='project']:checked");
+        if (!selectedRadio) return;
+
+        // Helper to get text or fallback
+        const getTitle = (key, fallback) => currentTextos[key] || fallback;
+
+        if (selectedRadio.id === "proj1") {
+            if (titulo) titulo.textContent = getTitle('project_1_title', "Congreso de Café");
+            if (circle) {
+                circle.style.backgroundImage = "url('./assets/imgs/project-1.png')";
+                circle.href = "https://congreso-de-cafe.vercel.app/";
             }
-        });
+            if (btn) btn.href = "https://congreso-de-cafe.vercel.app/";
+        } else if (selectedRadio.id === "proj2") {
+            if (titulo) titulo.textContent = getTitle('project_2_title', "Fit Force");
+            if (circle) {
+                circle.style.backgroundImage = "url('./assets/imgs/project-2.png')";
+                circle.href = "https://fit-force-final.vercel.app/";
+            }
+            if (btn) btn.href = "https://fit-force-final.vercel.app/";
+        } else if (selectedRadio.id === "proj3") {
+            if (titulo) titulo.textContent = getTitle('project_3_title', "Bonfire Lit");
+            if (circle) {
+                circle.style.backgroundImage = "url('./assets/imgs/project-3.png')";
+                circle.href = "https://bonfire-lit.vercel.app/";
+            }
+            if (btn) btn.href = "https://bonfire-lit.vercel.app/";
+        } else if (selectedRadio.id === "proj4") {
+            if (titulo) titulo.textContent = getTitle('project_4_title', "Delivery Counter");
+            if (circle) {
+                circle.style.backgroundImage = "url('./assets/imgs/project-4.png')";
+                circle.href = "https://delivery-counter.vercel.app/";
+            }
+            if (btn) btn.href = "https://delivery-counter.vercel.app/";
+        }
+    }
+
+    document.querySelectorAll("input[name='project']").forEach(input => {
+        input.addEventListener("change", updateProjectContent);
     });
+
     if (titulo) titulo.textContent = "Congreso de Café";
     if (circle) circle.style.backgroundImage = "url('./assets/imgs/project-1.png')";
     if (btn) btn.href = "https://congreso-de-cafe.vercel.app/";
@@ -304,6 +323,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return res.json();
             })
             .then(textos => {
+                currentTextos = textos; // Save translations
                 // Traducir elementos con data-lang
                 elementosTraducibles.forEach(el => {
                     const clave = el.getAttribute('data-lang');
@@ -374,6 +394,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 }
                 renderSkills(textos);
+                updateProjectContent(); // Update project title with new language
                 // Reiniciar animación del header
                 iniciarAnimacionCambiador();
             })
