@@ -878,7 +878,7 @@ footer nav{
         top: 0;
         right: -100%;
         width: 300px;
-        height: 100vh;
+        height: fit-content;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -886,7 +886,7 @@ footer nav{
         background-color: #f2efe9;
         z-index: 9999;
         gap: 50px;
-        padding: 50px 0px;
+        padding: 30px 0px;
         box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         border-left: 4px solid var(--color-ctas);
         /* Animación borde respiración */
@@ -1022,6 +1022,8 @@ footer nav{
     .circleProject{
         width: 300px;
         height: 300px;
+        margin-top: 75px;
+
     }
     .sectionProjects h3{
         font-size: 28px;
@@ -1119,7 +1121,6 @@ footer nav{
         font-size: 20px;
     }
     .circleProject{
-        margin-top: 75px;
         width: 250px;
         height: 250px;
     }
