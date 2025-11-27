@@ -617,9 +617,9 @@ header nav ul li a:hover, footer nav ul li a:hover{
     left: 0;
     width: 4px;                     /* Grosor de la barra */
     background: var(--color-ctas);  /* Naranja intenso */
-    /* Altura dividida por número de radios (aquí 3) */
+    /* Altura dividida por número de radios (aquí 4) */
     top: 0;
-    height: calc(100% / 3);
+    height: calc(100% / 4);
 }
 /* col 2 */
 .col2Projects{
